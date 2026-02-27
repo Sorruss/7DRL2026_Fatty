@@ -31,6 +31,17 @@ namespace FG
                 nodesDict.Add(node.roomID, node);
         }
 
+        public void RemoveNode(RoomNode node)
+        {
+            // REMOVE FROM THE LIST
+            if (nodesList.Contains(node))
+                nodesList.Remove(node);
+
+            // REMOVE FROM THE DICT
+            if (nodesDict.ContainsKey(node.roomID))
+                nodesDict.Remove(node.roomID);
+        }
+
         public RoomNode GetNodeByID(string roomID)
         {
             if (nodesDict.ContainsKey(roomID))
@@ -66,8 +77,6 @@ namespace FG
                 RoomNode childNode = GetNodeByID(childID);
                 if (childNode.roomType.isCorridor)
                     count++;
-
-                Debug.Log(count);
             }
 
             return count;

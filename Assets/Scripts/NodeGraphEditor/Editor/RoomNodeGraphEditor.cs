@@ -6,17 +6,27 @@ namespace FG
 {
     public class RoomNodeGraphEditor : EditorWindow
     {
+        // NODE STYLES
         private GUIStyle roomNodeStyle;
         private GUIStyle roomSelectedNodeStyle;
 
+        // NEEDED VARIABLES
         private static RoomNodeGraph currentGraphOpen;
-        private static RoomNode currentNodeSelected;
+        private RoomNode currentNodeSelected;
 
-        [Header("Config")]
+        [Header("Grid Config")]
+        private int bigGridSize = 120;
+        private int smallGridSize = 30;
+        private Vector2 graphOffset;
+        private Vector2 graphDrag;
+
+        [Header("Node Config")]
         private int nodeWidth = 160;
         private int nodeHeight = 75;
         private int nodeBorderOffset = 12;
         private int nodePaddingOffset = 25;
+
+        [Header("Connect Line Config")]
         private int connectLineWidth = 4;
         private float connectLineArrowSize = 7.0f;
 
@@ -69,6 +79,8 @@ namespace FG
         {
             if (currentGraphOpen != null)
             {
+                DrawGrid(smallGridSize, 0.2f, Color.gray);
+                DrawGrid(bigGridSize, 0.3f, Color.gray);
                 DrawConnectLine();
                 ProcessEvents(Event.current);
                 DrawDefinedConnectLines();
@@ -83,6 +95,9 @@ namespace FG
         // EVENT PROCESSING
         private void ProcessEvents(Event currentEvent)
         {
+            // FIND_OUT: IDK WHY
+            graphDrag = Vector2.zero;
+
             // GET HOVERED OVER NODE IF THERE IS SUCH
             if (currentNodeSelected == null || !currentNodeSelected.isBeingDragged)
                 currentNodeSelected = IsMouseOverNode(currentEvent.mousePosition);
@@ -110,6 +125,7 @@ namespace FG
             {
                 case EventType.MouseDown: ProcessMouseDownEvent(currentEvent); break;
                 case EventType.MouseMove: ProcessMouseMoveEvent(currentEvent); break;
+                case EventType.MouseDrag: ProcessMouseDragEvent(currentEvent); break;
                 default: break;
             }
         }
@@ -136,7 +152,7 @@ namespace FG
 
                 currentGraphOpen.UnselectAllNodes();
             }
-            if (currentEvent.button == 1)
+            else if (currentEvent.button == 1)
             {
                 // RIGHT MOUSE BUTTON -> CREATE/POPULATE/SHOW CONTEXT MENU
                 ShowContextMenu(currentEvent.mousePosition);
@@ -148,6 +164,9 @@ namespace FG
             GenericMenu contextMenu = new GenericMenu();
             contextMenu.AddItem(new GUIContent("Create Room Node"), false, CreateRoomNode, mousePosition);
             contextMenu.AddItem(new GUIContent("Select All"), false, SelectAllNodes);
+            contextMenu.AddSeparator("");
+            contextMenu.AddItem(new GUIContent("Delete Selected Connections"), false, DeleteSelectedConnections);
+            contextMenu.AddItem(new GUIContent("Delete Selected Nodes"), false, DeleteSelectedNodes);
             contextMenu.ShowAsContext();
         }
 
@@ -159,6 +178,24 @@ namespace FG
 
             currentGraphOpen.connectLinePosition += currentEvent.delta;
             GUI.changed = true;
+        }
+
+        // EVENT PROCESSING - MOUSE DRAG
+        private void ProcessMouseDragEvent(Event currentEvent)
+        {
+            if (currentEvent.button == 2)
+            {
+                // MIDDLE MOUSE BUTTON -> CANVAS DRAG
+                // 1. DRAG THE GRAPH (ALL THE NODES)
+                foreach (RoomNode node in currentGraphOpen.nodesList)
+                    node.Drag(currentEvent.delta);
+
+                // 2. DRAG THE GRID
+                graphDrag = currentEvent.delta;
+
+                // END
+                GUI.changed = true;
+            }
         }
 
         // -------
@@ -225,6 +262,39 @@ namespace FG
             }
         }
 
+        private void DrawGrid(int gridSize, float gridOpacity, Color gridColor)
+        {
+            // SET COLOR
+            Handles.color = new Color(gridColor.r, gridColor.g, gridColor.b, gridOpacity);
+
+            // CALCULATE LINES COUNT
+            int horizontalLinesCount = Mathf.CeilToInt((position.width + gridSize) / gridSize);
+            int verticalLinesCount = Mathf.CeilToInt((position.height + gridSize) / gridSize);
+
+            // FIND_OUT:
+            graphOffset += graphDrag * 0.5f;
+            Vector3 gridOffset = new(graphOffset.x % gridSize, graphOffset.y % gridSize, 0);
+
+            // DRAW HORIZONTAL LINES
+            for (int i = 0; i < horizontalLinesCount; ++i)
+            {
+                Handles.DrawLine(
+                    new Vector3(gridSize * i, -gridSize, 0.0f) + gridOffset, 
+                    new Vector3(gridSize * i, position.height + gridSize, 0.0f) + gridOffset);
+            }
+
+            // DRAW VERTICAL LINES
+            for (int i = 0; i < verticalLinesCount; ++i)
+            {
+                Handles.DrawLine(
+                    new Vector3(-gridSize, gridSize * i, 0.0f) + gridOffset,
+                    new Vector3(position.width + gridSize, gridSize * i, 0.0f) + gridOffset);
+            }
+
+            // RESET COLOR
+            Handles.color = Color.white;
+        }
+
         // --------------
         // NODES CREATORS
         private void CreateRoomNode(object positionObject)
@@ -286,6 +356,26 @@ namespace FG
                 node.isSelected = true;
 
             GUI.changed = true;
+        }
+
+        // DELETION
+        private void DeleteSelectedConnections()
+        {
+            foreach (RoomNode node in currentGraphOpen.nodesList)
+            {
+                if (node.isSelected)
+                    node.OnDeleteConnections();
+            }
+        }
+
+        private void DeleteSelectedNodes()
+        {
+            for (int i = currentGraphOpen.nodesList.Count - 1; i >= 0; --i)
+            {
+                RoomNode node = currentGraphOpen.nodesList[i];
+                if (node.isSelected && !node.roomType.isEntrance)
+                    node.OnDeleteNode();
+            }
         }
     }
 }

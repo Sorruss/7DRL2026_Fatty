@@ -5,8 +5,8 @@ namespace FG
 {
     public static class Helpers
     {
-        // -----------------
-        // EDITOR VALIDATORS
+        // --------------------------
+        // EDITOR PROPERTY VALIDATORS
         public static bool ValidateStringProperty(Object gameObject, string propertyName, string property)
         {
             if (string.IsNullOrEmpty(propertyName))

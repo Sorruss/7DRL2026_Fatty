@@ -61,12 +61,58 @@ namespace FG
         {
             GenericMenu contextMenu = new GenericMenu();
             contextMenu.AddItem(new GUIContent("Create Connection"), false, OnCreateConnection, mousePosition);
+            contextMenu.AddSeparator("");
+            contextMenu.AddItem(new GUIContent("Delete Connections"), false, OnDeleteConnections);
+            if (!roomType.isEntrance)
+                contextMenu.AddItem(new GUIContent("Delete"), false, OnDeleteNode);
             contextMenu.ShowAsContext();
         }
 
         private void OnCreateConnection(object mousePosition)
         {
             roomNodeGraph.ConfigureConnectLineStart(this, (Vector2)mousePosition);
+        }
+
+        public void OnDeleteConnections()
+        {
+            // DELETE CONNECTIONS FOR CHILDREN
+            foreach (string childID in roomNodeChildrenIDs)
+            {
+                RoomNode childNode = roomNodeGraph.GetNodeByID(childID);
+                if (childNode == null)
+                    continue;
+               
+                childNode.RemoveParentID(roomID);
+            }
+            roomNodeChildrenIDs.Clear();
+
+            // DELETE CONNECTIONS FOR PARENTS
+            foreach (string parentID in roomNodeParentIDs)
+            {
+                RoomNode parentNode = roomNodeGraph.GetNodeByID(parentID);
+                if (parentNode == null)
+                    continue;
+
+                parentNode.RemoveChildID(roomID);
+            }
+            roomNodeParentIDs.Clear();
+        }
+
+        public void OnDeleteNode()
+        {
+            OnDeleteConnections();
+
+            // 1. DELETE FROM THE GRAPH LIST / DICT
+            roomNodeGraph.RemoveNode(this);
+
+            // 2. DELETE FROM ASSETS
+            DestroyImmediate(this, true);
+            AssetDatabase.SaveAssets();
+        }
+        
+        public void Drag(Vector2 delta)
+        {
+            nodeRect.position += delta;
         }
 
         // ------------
@@ -83,6 +129,18 @@ namespace FG
                 int currentTypeIndex = roomNodeTypes.roomNodeTypes.FindIndex(x => x == roomType);
                 int newTypeIndex = EditorGUILayout.Popup("", currentTypeIndex, GetRoomNodeTypeNames());
                 roomType = roomNodeTypes.roomNodeTypes[newTypeIndex];
+
+                // IF NEW ROOM TYPE IS ONE OF "SPECIAL" ROOMS WITH CONDITIONS
+                // WE NEED TO REMOVE ALL THE CONNECTIONS
+                if (currentTypeIndex != newTypeIndex)
+                {
+                    isSelected = false;
+                    
+                    if (roomType.isNone || roomType.isBossRoom || roomType.isCorridor)
+                    {
+                        OnDeleteConnections();
+                    }
+                }
             }
             else
             {
@@ -136,7 +194,7 @@ namespace FG
                 return;
 
             isBeingDragged = true;
-            nodeRect.position += currentEvent.delta;
+            Drag(currentEvent.delta);
             EditorUtility.SetDirty(this);
             GUI.changed = true;
         }
@@ -208,6 +266,18 @@ namespace FG
 
             roomNodeChildrenIDs.Add(ID);
             return true;
+        }
+
+        public void RemoveParentID(string ID)
+        {
+            if (roomNodeParentIDs.Contains(ID))
+                roomNodeParentIDs.Remove(ID);
+        }
+
+        public void RemoveChildID(string ID)
+        {
+            if (roomNodeChildrenIDs.Contains(ID))
+                roomNodeChildrenIDs.Remove(ID);
         }
     }
 }
