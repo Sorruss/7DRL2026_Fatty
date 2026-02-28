@@ -1,38 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 namespace FG
 {
     [CreateAssetMenu(menuName = "Scriptable Object/Dungeon Builder/Room")]
-    public class RoomTemplate : ScriptableObject
+    public class RoomTemplateSO : ScriptableObject
     {
-        [HideInInspector] public string guid;
+        public string guid;
 
         [Header("Config")]
-        public GameObject roomPrefab;
-        public RoomNodeType roomType;
+        public GameObject prefab;
+        public RoomNodeType roomNodeType;
         public Vector2Int lowerBounds;
         public Vector2Int upperBounds;
-        public Vector2Int[] spawnPoints;
-        public List<Doorway> doorways;
+        [SerializeField] public List<Doorway> doorwayList;
+        public Vector2Int[] spawnPositionArray;
 
         [Header("Debug")]
-        public GameObject roomPreviousPrefab;
+        public GameObject previousPrefab;
+
+        public List<Doorway> GetDoorwayList()
+        {
+            return doorwayList;
+        }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            if (string.IsNullOrEmpty(guid) || roomPrefab != roomPreviousPrefab)
+            if (guid == "" || previousPrefab != prefab)
             {
-                guid = Guid.NewGuid().ToString();
-                roomPreviousPrefab = roomPrefab;
+                guid = GUID.Generate().ToString();
+                previousPrefab = prefab;
                 EditorUtility.SetDirty(this);
             }
 
-            Helpers.ValidateEnumerableProperty(this, nameof(doorways), doorways);
-            Helpers.ValidateEnumerableProperty(this, nameof(spawnPoints), spawnPoints);
+            Helpers.ValidateEnumerableProperty(this, nameof(doorwayList), doorwayList);
+            Helpers.ValidateEnumerableProperty(this, nameof(spawnPositionArray), spawnPositionArray);
         }
 #endif
     }

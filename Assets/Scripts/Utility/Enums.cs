@@ -2,10 +2,10 @@
 {
     public enum Orientation
     {
-        None = 1,
-        Left,
-        Right,
-        Top,
-        Bottom
+        north,
+        east,
+        south,
+        west,
+        none
     }
 }
