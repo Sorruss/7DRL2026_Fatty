@@ -20,6 +20,12 @@ namespace FG
 
         public static bool ValidateEnumerableProperty(Object gameObject, string propertyName, IEnumerable property)
         {
+            if (property == null)
+            {
+                Debug.Log($"Enumerable property of '{gameObject.name}':'{propertyName}' is NULL.");
+                return false;
+            }
+
             foreach (var item in property)
             {
                 if (item == null)

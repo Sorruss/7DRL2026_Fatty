@@ -305,9 +305,9 @@ namespace FG
                 CreateRoomNode(new Vector2(200.0f, 200.0f), entranceRoomType);
             }
 
-            RoomNodeType nullRoomType = ResourcesManager.instance.roomNodeTypes.roomNodeTypes.Find(x => x == x.isNone);
+            RoomNodeType corridorRoomType = ResourcesManager.instance.roomNodeTypes.roomNodeTypes.Find(x => x == x.isCorridor);
             Vector2 position = (Vector2)positionObject;
-            CreateRoomNode(position, nullRoomType);
+            CreateRoomNode(position, corridorRoomType);
         }
 
         private void CreateRoomNode(Vector2 position, RoomNodeType roomNodeType)

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace FG
 {
     [CreateAssetMenu(menuName = "Scriptable Object/Dungeon Builder/Room")]
-    public class RoomTemplateSO : ScriptableObject
+    public class RoomTemplate : ScriptableObject
     {
         public string guid;
 
