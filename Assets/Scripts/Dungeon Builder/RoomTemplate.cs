@@ -7,7 +7,7 @@ namespace FG
     [CreateAssetMenu(menuName = "Scriptable Object/Dungeon Builder/Room")]
     public class RoomTemplate : ScriptableObject
     {
-        public string guid;
+        public string ID;
 
         [Header("Config")]
         public GameObject prefab;
@@ -28,9 +28,9 @@ namespace FG
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            if (guid == "" || previousPrefab != prefab)
+            if (ID == "" || previousPrefab != prefab)
             {
-                guid = GUID.Generate().ToString();
+                ID = GUID.Generate().ToString();
                 previousPrefab = prefab;
                 EditorUtility.SetDirty(this);
             }

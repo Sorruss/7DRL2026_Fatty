@@ -261,7 +261,8 @@ namespace FG
                 return false;
 
             // TOO MANY CORRIDORS
-            if (childNode.roomType.isCorridor && roomNodeGraph.GetCorridorsConnectedCount(this) >= 3)
+            if (childNode.roomType.isCorridor && 
+                roomNodeGraph.GetCorridorsConnectedCount(this) >= GameManager.instance.dungeonMaxCorridorsPerNode)
                 return false;
 
             roomNodeChildrenIDs.Add(ID);

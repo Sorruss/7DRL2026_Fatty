@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace FG
 {
@@ -31,6 +32,12 @@ namespace FG
                 nodesDict.Add(node.roomID, node);
         }
 
+        private void RefreshNodesDict()
+        {
+            foreach (RoomNode node in nodesList)
+                AddNode(node);
+        }
+
         public void RemoveNode(RoomNode node)
         {
             // REMOVE FROM THE LIST
@@ -42,17 +49,44 @@ namespace FG
                 nodesDict.Remove(node.roomID);
         }
 
-        public RoomNode GetNodeByID(string roomID)
+        // GETTERS
+        public RoomNode GetNodeByID(string nodeID)
         {
-            if (nodesDict.ContainsKey(roomID))
-                return nodesDict[roomID];
+            if (nodesDict.ContainsKey(nodeID))
+                return nodesDict[nodeID];
             return null;
         }
 
-        private void RefreshNodesDict()
+        public int GetCorridorsConnectedCount(RoomNode roomNode)
         {
-            foreach (RoomNode node in nodesList)
-                AddNode(node);
+            int count = 0;
+            foreach (string childID in roomNode.roomNodeChildrenIDs)
+            {
+                RoomNode childNode = GetNodeByID(childID);
+                if (childNode.roomType.isCorridor)
+                    count++;
+            }
+
+            return count;
+        }
+
+        public RoomNode GetNodeByType(RoomNodeType roomNodeType)
+        {
+            foreach (var node in nodesList)
+            {
+                if (node.roomType != roomNodeType)
+                    continue;
+
+                return node;
+            }
+
+            return null;
+        }
+
+        public IEnumerable<RoomNode> GetNextChildByNodeID(RoomNode parentNode)
+        {
+            foreach (string childID in parentNode.roomNodeChildrenIDs)
+                yield return GetNodeByID(childID);
         }
 
         public bool HasBossRoomConnected()
@@ -67,19 +101,6 @@ namespace FG
             }
 
             return false;
-        }
-
-        public int GetCorridorsConnectedCount(RoomNode roomNode)
-        {
-            int count = 0;
-            foreach (string childID in roomNode.roomNodeChildrenIDs)
-            {
-                RoomNode childNode = GetNodeByID(childID);
-                if (childNode.roomType.isCorridor)
-                    count++;
-            }
-
-            return count;
         }
 
 #if UNITY_EDITOR
