@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5838e9e7ac55a409c8da8dc962d331, type: 3}
+  m_Name: Level_02_04
+  m_EditorClassIdentifier: Assembly-CSharp::FG.RoomNodeGraph
+  nodesList:
+  - {fileID: 7550468139679489670}
+  nodeTypes: {fileID: 0}
+  connectLineStartingNode: {fileID: 0}
+  connectLinePosition: {x: 0, y: 0}
+  isTryingToConnectLine: 0
+--- !u!114 &7550468139679489670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a45bf07df3ae247a924bf1d605f178, type: 3}
+  m_Name: Room Node
+  m_EditorClassIdentifier: Assembly-CSharp::FG.RoomNode
+  roomID: 23a58d9c-8451-408d-8016-2a1f78899178
+  roomType: {fileID: 11400000, guid: 34559245ba773cd48a6ac714cdfa08e3, type: 2}
+  roomNodeGraph: {fileID: 11400000}
+  roomNodeParentIDs: []
+  roomNodeChildrenIDs: []
+  nodeRect:
+    serializedVersion: 2
+    x: -247.20044
+    y: 356.79984
+    width: 160
+    height: 75
+  isSelected: 1
+  isBeingDragged: 0
