@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FG
 {
-    [CreateAssetMenu(menuName = "Scriptable Object/Dungeon/Room Node Graph")]
+    [CreateAssetMenu(menuName = "Scriptable Object/Dungeon Editor/Room Node Graph")]
     public class RoomNodeGraph : ScriptableObject
     {
         [Header("Nodes Info")]

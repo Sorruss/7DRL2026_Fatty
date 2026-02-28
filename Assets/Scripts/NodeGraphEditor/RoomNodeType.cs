@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace FG
 {
-    [CreateAssetMenu(menuName = "Scriptable Object/Dungeon/Room Node Type")]
+    [CreateAssetMenu(menuName = "Scriptable Object/Dungeon Editor/Room Node Type")]
     public class RoomNodeType : ScriptableObject
     {
         [Header("Config")]

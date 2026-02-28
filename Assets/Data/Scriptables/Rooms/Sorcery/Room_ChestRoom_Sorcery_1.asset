@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2708e4084c4a1534ba646096300f778c, type: 3}
+  m_Name: Room_ChestRoom_Sorcery_1
+  m_EditorClassIdentifier: 
+  guid: c0fa11ec-4c48-4472-b622-8e5feb0d1121
+  roomPrefab: {fileID: 4327421925113694216, guid: 823cb4abcc4fc5c448b9b697aff5dc21, type: 3}
+  roomType: {fileID: 11400000, guid: 3491fcace241bea42a89cf04a72f6b30, type: 2}
+  lowerBounds: {x: 15, y: 4}
+  upperBounds: {x: 35, y: 29}
+  spawnPoints: []
+  doorways: []
+  roomPreviousPrefab: {fileID: 4327421925113694216, guid: 823cb4abcc4fc5c448b9b697aff5dc21, type: 3}

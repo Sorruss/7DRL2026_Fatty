@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2708e4084c4a1534ba646096300f778c, type: 3}
+  m_Name: Room_LargeRoom_Sorcery_5
+  m_EditorClassIdentifier: 
+  guid: c06e9ab0-b18c-4824-9f1b-7d97f7775606
+  roomPrefab: {fileID: 4327421925113694216, guid: 141f51d0b3eb42c42aa196a721650e96, type: 3}
+  roomType: {fileID: 11400000, guid: 3efa7e1621234e248a39855f53467773, type: 2}
+  lowerBounds: {x: -11, y: -4}
+  upperBounds: {x: 57, y: 70}
+  spawnPoints: []
+  doorways: []
+  roomPreviousPrefab: {fileID: 4327421925113694216, guid: 141f51d0b3eb42c42aa196a721650e96, type: 3}

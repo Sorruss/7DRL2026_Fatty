@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2708e4084c4a1534ba646096300f778c, type: 3}
+  m_Name: Room_CorridorNS_Sorcery_1
+  m_EditorClassIdentifier: 
+  guid: ae6dd7ce-2b0a-41a3-b51f-5ca2208875e4
+  roomPrefab: {fileID: 4327421925113694216, guid: f7108841bc49416459cb1bfd338381c6, type: 3}
+  roomType: {fileID: 11400000, guid: fdc625802d63e2b4b80b10d3b06c0043, type: 2}
+  lowerBounds: {x: 4, y: -2}
+  upperBounds: {x: 20, y: 39}
+  spawnPoints: []
+  doorways: []
+  roomPreviousPrefab: {fileID: 4327421925113694216, guid: f7108841bc49416459cb1bfd338381c6, type: 3}
