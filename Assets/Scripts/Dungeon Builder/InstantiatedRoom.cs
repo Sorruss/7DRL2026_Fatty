@@ -12,6 +12,10 @@ namespace FG
         [HideInInspector] public Grid roomGrid;
         [HideInInspector] public Bounds roomColliderBounds;
 
+        [Header("Doors Config")]
+        [HideInInspector] public float pixelsPerUnit = 16.0f;
+        [HideInInspector] public float tilesSize = 16.0f;
+
         [Header("Tilemaps")]
         [HideInInspector] public Tilemap groundTilemap;
         [HideInInspector] public Tilemap decoration01Tilemap;
@@ -55,6 +59,7 @@ namespace FG
             this.room = room;
 
             BlockUnusedDoorways();
+            PlaceDoors();
         }
 
         private void BlockUnusedDoorways()
@@ -70,6 +75,54 @@ namespace FG
                 BlockDoorwayWithTilemap(frontTilemap, doorway);
                 BlockDoorwayWithTilemap(collisionTilemap, doorway);
                 BlockDoorwayWithTilemap(minimapTilemap, doorway);
+            }
+        }
+
+        private void PlaceDoors()
+        {
+            if (room.roomType.isCorridorHorizontal || room.roomType.isCorridorVertical)
+                return;
+
+            foreach (var doorway in room.doorways)
+            {
+                if (!doorway.isConnected)
+                    continue;
+
+                if (doorway.doorPrefab == null)
+                    continue;
+
+                float tileDistance = tilesSize / pixelsPerUnit;
+                GameObject door = Instantiate(doorway.doorPrefab, transform);
+
+                if (doorway.orientation == Orientation.north)
+                {
+                    door.transform.localPosition = 
+                        new Vector3(doorway.position.x + tileDistance / 2.0f,
+                        doorway.position.y + tileDistance, 0.0f);
+                }
+                else if (doorway.orientation == Orientation.south)
+                {
+                    door.transform.localPosition =
+                        new Vector3(doorway.position.x + tileDistance / 2.0f,
+                        doorway.position.y, 0.0f);
+                }
+                else if (doorway.orientation == Orientation.west)
+                {
+                    door.transform.localPosition =
+                        new Vector3(doorway.position.x,
+                        doorway.position.y + tileDistance * 1.25f, 0.0f);
+                }
+                else if (doorway.orientation == Orientation.east)
+                {
+                    door.transform.localPosition =
+                        new Vector3(doorway.position.x + tileDistance,
+                        doorway.position.y + tileDistance * 1.25f, 0.0f);
+                }
+
+                Door doorComponent = door.GetComponent<Door>();
+                doorComponent.isBossRoom = room.roomType.isBossRoom;
+                if (doorComponent.isBossRoom)
+                    doorComponent.LockDoor(true);
             }
         }
 

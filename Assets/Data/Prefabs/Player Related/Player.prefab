@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2338957410750618499}
   - component: {fileID: 4709666011716488018}
   - component: {fileID: 4043264243622107067}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: playerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,6 +312,7 @@ MonoBehaviour:
   characterAnimatorManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  ridigBody: {fileID: 0}
   animator: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
   playerAnimatorManager: {fileID: 0}
@@ -348,7 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa39a6d5bd8428419b6622d08d4cd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.PlayerLocomotionManager
-  speed: 5
+  speed: 12
+  isMoving: 0
   canMove: 1
   aimDirection: 0
 --- !u!114 &440276298047924211

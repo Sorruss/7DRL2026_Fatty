@@ -75,6 +75,9 @@ namespace FG
 
             // ADD PLAYER TO CINEMACHINE TARGET GROUP
             CinemachineTargetGroupManager.instance.AddTarget(player.transform);
+
+            // CONFIGURE OTHER COMPONENTS
+            PlayerInputManager.instance.player = player;
         }
 
         // -------

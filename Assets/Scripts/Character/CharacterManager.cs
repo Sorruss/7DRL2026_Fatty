@@ -8,6 +8,7 @@ namespace FG
         [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
         [HideInInspector] public CharacterStatsManager characterStatsManager;
         [HideInInspector] public SpriteRenderer spriteRenderer;
+        [HideInInspector] public Rigidbody2D ridigBody;
         [HideInInspector] public Animator animator;
 
         // ------------
@@ -18,6 +19,7 @@ namespace FG
             characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
             characterStatsManager = GetComponent<CharacterStatsManager>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            ridigBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
         }
 

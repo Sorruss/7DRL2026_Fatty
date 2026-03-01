@@ -23,6 +23,16 @@ namespace FG
             character = GetComponent<CharacterManager>();
         }
 
+        private void OnEnable()
+        {
+            character.characterLocomotionManager.IsMovingChangeEvent += HandleMovementAnimatorParams;
+        }
+
+        private void OnDisable()
+        {
+            character.characterLocomotionManager.IsMovingChangeEvent -= HandleMovementAnimatorParams;
+        }
+
         // -------------------------------
         // ANIMATOR PARAMS RELATED METHODS
         // AIMING
@@ -50,6 +60,13 @@ namespace FG
                 case AimDirection.DOWN: character.animator.SetBool(AnimParamAimDown, true); break;
                 default: break;
             }
+        }
+
+        // MOVEMENT
+        private void HandleMovementAnimatorParams(bool isMoving)
+        {
+            character.animator.SetBool(AnimParamAimIsIdle, !isMoving);
+            character.animator.SetBool(AnimParamAimIsMoving, isMoving);
         }
     }
 }

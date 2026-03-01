@@ -5,10 +5,16 @@ namespace FG
 {
     public class DungeonBuilder : SingletonMonoBehaviour<DungeonBuilder>
     {
+        [Header("Config")]
+        [SerializeField] private float pixelsPerUnit = 16.0f;
+        [SerializeField] private float tilesSize = 16.0f;
+
+        [Header("Flags")]
+        public bool dungeonBuildSuccessful = false;
+
         private List<RoomNodeType> nodeTypes;
         public Dictionary<string, Room> roomsDict = new();
         private Dictionary<string, RoomTemplate> templatesDict = new();
-        public bool dungeonBuildSuccessful = false;
 
         // ------------
         // UNITY EVENTS
@@ -111,8 +117,12 @@ namespace FG
                 Vector3 roomPosition = new Vector3(room.lowerBounds.x - room.templateLowerBounds.x,
                     room.lowerBounds.y - room.templateLowerBounds.y, 0.0f);
                 GameObject roomGameObject = Instantiate(room.roomPrefab, roomPosition, Quaternion.identity, transform);
+                
                 InstantiatedRoom instantiatedRoom = roomGameObject.GetComponent<InstantiatedRoom>();
+                instantiatedRoom.pixelsPerUnit = pixelsPerUnit;
+                instantiatedRoom.tilesSize = tilesSize;
                 instantiatedRoom.Init(room);
+
                 room.instantiatedRoom = instantiatedRoom;
 
                 // SETUP INITIAL CURRENT ROOM (AS AN ENTRANCE)
