@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2708e4084c4a1534ba646096300f778c, type: 3}
   m_Name: Room_SmallRoom_Sorcery_1
   m_EditorClassIdentifier: 
-  guid: 29f7ece5f71fc184eb2383c6b075dc22
+  ID: ade283b9cf9f8ce408d7a86e8f94a8ae
   prefab: {fileID: 4327421925113694216, guid: 766f851460393c84fab94d3de363984a, type: 3}
   roomNodeType: {fileID: 11400000, guid: 7a87abc88072e164cab322e0f275d334, type: 2}
   lowerBounds: {x: -1, y: 0}
