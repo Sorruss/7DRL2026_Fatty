@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace FG
@@ -13,6 +14,9 @@ namespace FG
         [Header("Flags")]
         public bool isDead = false;
 
+        // EVENT ACTIONS
+        [HideInInspector] public event Action<float> HealthChangeEvent;
+
         // ------------
         // UNITY EVENTS
         protected virtual void Awake()
@@ -20,28 +24,43 @@ namespace FG
             character = GetComponent<CharacterManager>();
         }
 
+        private void OnEnable()
+        {
+            HealthChangeEvent += OnHealthChanged;
+        }
+
+        private void OnDisable()
+        {
+            HealthChangeEvent -= OnHealthChanged;
+        }
+
+        // ------
+        // EVENTS
+        private void OnHealthChanged(float newValue)
+        {
+            if (newValue <= 0.0f)
+            {
+                health = 0.0f;
+                character.Die();
+            }
+            else if (newValue > maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
+
         // --------------
         // HEALTH METHODS
         public void DamageHealth(float amount)
         {
-            float newHealth = health - amount;
-            if (newHealth <= 0)
-            {
-                health = 0.0f;
-                character.Die();
-                return;
-            }
-
-            health = newHealth;
+            health -= amount;
+            HealthChangeEvent?.Invoke(health);
         }
 
         public void AddHealth(float amount)
         {
-            float newHealth = health + amount;
-            if (newHealth > maxHealth)
-                newHealth = maxHealth;
-
-            health = newHealth;
+            health += amount;
+            HealthChangeEvent?.Invoke(health);
         }
     }
 }

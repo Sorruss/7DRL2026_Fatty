@@ -59,5 +59,10 @@ namespace FG
         {
             return Mathf.Max(min1, min2) <= Mathf.Min(max1, max2);
         }
+
+        public static float GetVectorAngle(Vector2 vector)
+        {
+            return Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
+        }
     }
 }

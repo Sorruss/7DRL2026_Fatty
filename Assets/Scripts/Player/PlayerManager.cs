@@ -5,6 +5,7 @@ namespace FG
     public class PlayerManager : CharacterManager
     {
         [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
+        [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerStatsManager playerStatsManager;
 
         // ------------
@@ -14,6 +15,7 @@ namespace FG
             base.Awake();
 
             playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+            playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
         }
     }

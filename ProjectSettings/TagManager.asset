@@ -11,6 +11,8 @@ TagManager:
   - minimapTilemap
   - decoration1Tilemap
   - decoration2Tilemap
+  - minimapPlayer
+  - playerWeapon
   layers:
   - Default
   - TransparentFX

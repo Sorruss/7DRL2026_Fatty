@@ -22,4 +22,14 @@
         DUNGEON_OVERVIEW_MAP,
         GAME_RESTART
     }
+
+    public enum AimDirection    // USED 
+    {
+        UP = 1,
+        UP_LEFT,
+        UP_RIGHT,
+        LEFT,
+        RIGHT,
+        DOWN
+    }
 }

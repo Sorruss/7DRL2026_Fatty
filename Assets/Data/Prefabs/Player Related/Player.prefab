@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 6873751902163089080}
   - component: {fileID: 1397915149666168287}
   - component: {fileID: 4717274420955868723}
+  - component: {fileID: 2075561037656818649}
   - component: {fileID: 907933149077687464}
   - component: {fileID: 440276298047924211}
   - component: {fileID: 8635395753942627365}
@@ -308,11 +309,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.PlayerManager
   characterLocomotionManager: {fileID: 0}
+  characterAnimatorManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
+  playerAnimatorManager: {fileID: 0}
   playerStatsManager: {fileID: 0}
+--- !u!114 &2075561037656818649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285719632809405085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01540899ccdf0b34b9de7748e0b15a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FG.PlayerAnimatorManager
+  AnimParamAimUp: -208105161
+  AnimParamAimUpLeft: -699074243
+  AnimParamAimUpRight: -1352146063
+  AnimParamAimLeft: 98951691
+  AnimParamAimRight: 1611581427
+  AnimParamAimDown: 1669174616
+  AnimParamAimIsIdle: 2098831385
+  AnimParamAimIsMoving: -27727268
 --- !u!114 &907933149077687464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,8 +348,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa39a6d5bd8428419b6622d08d4cd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.PlayerLocomotionManager
-  speed: 0
+  speed: 5
   canMove: 1
+  aimDirection: 0
 --- !u!114 &440276298047924211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +378,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.6
+  m_Mass: 1.4818965
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_GravityScale: 0
