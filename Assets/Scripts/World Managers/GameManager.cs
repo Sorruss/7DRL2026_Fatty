@@ -9,6 +9,7 @@ namespace FG
 
         [Header("Config")]
         public GameState gameState;
+        public float animationBaseSpeed = 9.0f;
 
         [Header("Dungeon Config")]
         public DungeonLevel[] dungeonLevels;

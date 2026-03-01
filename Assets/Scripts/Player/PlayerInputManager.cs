@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,7 @@ namespace FG
 
         [Header("Movement Input")]
         [SerializeField] private Vector2 MovementInput;
+        [SerializeField] private float moveAmount;
 
         [Header("Debug Inputs")]
         [SerializeField] private bool isRKeyActive = false;
@@ -73,7 +75,7 @@ namespace FG
         {
             float horizontalMovement = MovementInput.x;
             float verticalMovement = MovementInput.y;
-            float moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalMovement) + Mathf.Abs(verticalMovement));
+            moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalMovement) + Mathf.Abs(verticalMovement));
 
             player.playerLocomotionManager.SetIsMoving(moveAmount != 0.0f);
             player.playerLocomotionManager.GroundMove(MovementInput);

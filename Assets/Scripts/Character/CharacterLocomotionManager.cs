@@ -17,19 +17,23 @@ namespace FG
 
         // EVENT ACTIONS
         [HideInInspector] public event Action<bool> IsMovingChangeEvent;
+        [HideInInspector] public event Action<float, float> SpeedChangeEvent;
 
         // ------------
         // UNITY EVENTS
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();
+
+            // TRIGGER SUBSCRIPTIONS
+            SpeedChangeEvent?.Invoke(0.0f, speed);
         }
 
         protected virtual void Update()
         {
             
         }
-    
+
         // ----------------
         // MOVEMENT METHODS
         public void GroundMove(Vector2 movementInput)
@@ -41,6 +45,15 @@ namespace FG
         {
             isMoving = value;
             IsMovingChangeEvent?.Invoke(value);
+        }
+
+        // -------
+        // SETTERS
+        private void SetSpeed(float newSpeed)
+        {
+            float oldSpeed = speed;
+            speed = newSpeed;
+            SpeedChangeEvent?.Invoke(oldSpeed, speed);
         }
     }
 }

@@ -26,11 +26,13 @@ namespace FG
         private void OnEnable()
         {
             character.characterLocomotionManager.IsMovingChangeEvent += HandleMovementAnimatorParams;
+            character.characterLocomotionManager.SpeedChangeEvent += OnSpeedChanged;
         }
 
         private void OnDisable()
         {
             character.characterLocomotionManager.IsMovingChangeEvent -= HandleMovementAnimatorParams;
+            character.characterLocomotionManager.SpeedChangeEvent -= OnSpeedChanged;
         }
 
         // -------------------------------
@@ -67,6 +69,16 @@ namespace FG
         {
             character.animator.SetBool(AnimParamAimIsIdle, !isMoving);
             character.animator.SetBool(AnimParamAimIsMoving, isMoving);
+        }
+
+        // -------------
+        // SUBSCRIBTIONS
+        private void OnSpeedChanged(float oldValue, float newValue)
+        {
+            if (newValue == oldValue)
+                return;
+
+            character.animator.speed = newValue / GameManager.instance.animationBaseSpeed;
         }
     }
 }

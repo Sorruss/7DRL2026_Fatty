@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa39a6d5bd8428419b6622d08d4cd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.PlayerLocomotionManager
-  speed: 12
+  speed: 10
   isMoving: 0
   canMove: 1
   aimDirection: 0
