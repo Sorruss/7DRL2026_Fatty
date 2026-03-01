@@ -107,12 +107,17 @@ namespace FG
         {
             foreach (Room room in roomsDict.Values)
             {
+                // CREATE & CONFIG INSTANTIATED ROOM
                 Vector3 roomPosition = new Vector3(room.lowerBounds.x - room.templateLowerBounds.x,
                     room.lowerBounds.y - room.templateLowerBounds.y, 0.0f);
                 GameObject roomGameObject = Instantiate(room.roomPrefab, roomPosition, Quaternion.identity, transform);
                 InstantiatedRoom instantiatedRoom = roomGameObject.GetComponent<InstantiatedRoom>();
                 instantiatedRoom.Init(room);
                 room.instantiatedRoom = instantiatedRoom;
+
+                // SETUP INITIAL CURRENT ROOM (AS AN ENTRANCE)
+                if (room.roomType.isEntrance)
+                    GameManager.instance.SetCurrentRoom(room);
             }
         }
 
@@ -308,22 +313,6 @@ namespace FG
 
             // 2. GETTING RANDOM ONE AMONG THEM
             return matchingTemplates[Random.Range(0, matchingTemplates.Count)];
-        }
-
-        private Room GetRoomByID(string ID)
-        {
-            if (roomsDict.ContainsKey(ID))
-                return roomsDict[ID];
-
-            return null;
-        }
-
-        private RoomTemplate GetTemplateByID(string ID)
-        {
-            if (templatesDict.ContainsKey(ID))
-                return templatesDict[ID];
-
-            return null;
         }
     }
 }

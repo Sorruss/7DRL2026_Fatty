@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620ada5995e1b4d4cb2299d0676efcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.ResourcesManager
+  playerPrefab: {fileID: 6285719632809405085, guid: 02f597b4c4584eb4c923975bd1ec6908, type: 3}
   roomNodeTypes: {fileID: 11400000, guid: a1d930a439cd08f4c9d46449cea1749d, type: 2}
+  materialOpacityString: Alpha_Slider
   dimmedMaterial: {fileID: 2100000, guid: fd5ae752e16da36428c7ae98c49dc19e, type: 2}

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Cinemachine;
 
-
 public class CameraShake : MonoBehaviour {
     public static CameraShake Instance;
     float shakeTimer;

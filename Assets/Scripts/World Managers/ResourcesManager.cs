@@ -19,6 +19,9 @@ namespace FG
 
         // ---------
         // RESOURCES
+        [Header("Special Prefabs")]
+        public GameObject playerPrefab;
+
         [Header("Resources - Room Graph Editor")]
         public RoomNodeTypeList roomNodeTypes;
 
