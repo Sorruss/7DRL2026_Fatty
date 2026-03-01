@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -50,6 +51,29 @@ namespace FG
             }
 
             collisionTilemap.GetComponent<TilemapRenderer>().enabled = false;
+        }
+
+        private void OnEnable()
+        {
+            GameManager.instance.RoomChangeEvent += OnCurrentRoomChanged;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.instance.RoomChangeEvent -= OnCurrentRoomChanged;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (room == GameManager.instance.currentRoom)
+                return;
+
+            PlayerManager player = collision.GetComponent<PlayerManager>();
+            if (player == null)
+                return;
+
+            room.wasVisitedBefore = true;
+            GameManager.instance.SetCurrentRoom(room);
         }
 
         // --------------
@@ -177,6 +201,62 @@ namespace FG
                     tilemap.SetTransformMatrix(newPos, transformationMat);
                 }
             }
+        }
+
+        // -----------------
+        // LIGHTNING CONTROL
+        private void LitRoom()
+        {
+            Material variableMaterial = new(ResourcesManager.instance.variableLitShader);
+            StartCoroutine(LitRoomCoroutine(variableMaterial));
+        }
+
+        private void LitAllDoors()
+        {
+            Door[] doors = GetComponentsInChildren<Door>();
+            foreach (Door door in doors)
+                door.LitDoor();
+        }
+
+        // ----------
+        // COROUTINES
+        private IEnumerator LitRoomCoroutine(Material material)
+        {
+            groundTilemap.GetComponent<TilemapRenderer>().material = material;
+            decoration01Tilemap.GetComponent<TilemapRenderer>().material = material;
+            decoration02Tilemap.GetComponent<TilemapRenderer>().material = material;
+            frontTilemap.GetComponent<TilemapRenderer>().material = material;
+            minimapTilemap.GetComponent<TilemapRenderer>().material = material;
+
+            for (float i = 0.05f; i < 1.0f; i += Time.deltaTime / GameManager.instance.roomFadeInTime)
+            {
+                material.SetFloat(ResourcesManager.instance.materialOpacityString, i);
+                yield return null;
+            }
+
+            groundTilemap.GetComponent<TilemapRenderer>().material = ResourcesManager.instance.defaultLitMaterial;
+            decoration01Tilemap.GetComponent<TilemapRenderer>().material = ResourcesManager.instance.defaultLitMaterial;
+            decoration02Tilemap.GetComponent<TilemapRenderer>().material = ResourcesManager.instance.defaultLitMaterial;
+            frontTilemap.GetComponent<TilemapRenderer>().material = ResourcesManager.instance.defaultLitMaterial;
+            minimapTilemap.GetComponent<TilemapRenderer>().material = ResourcesManager.instance.defaultLitMaterial;
+
+            yield return null;
+        }
+
+        // ---------
+        // CALLBACKS
+        private void OnCurrentRoomChanged(Room newValue)
+        {
+            if (room != newValue)
+                return;
+
+            if (room.isLit)
+                return;
+
+            LitRoom();
+            LitAllDoors();
+
+            room.isLit = true;
         }
     }
 }

@@ -23,6 +23,15 @@ namespace FG
             base.Awake();
 
             nodeTypes = ResourcesManager.instance.roomNodeTypes.roomNodeTypes;
+        }
+
+        private void OnEnable()
+        {
+            ResourcesManager.instance.SetMaterialOpacity(ref ResourcesManager.instance.dimmedMaterial, 0.0f);
+        }
+
+        private void OnDisable()
+        {
             ResourcesManager.instance.SetMaterialOpacity(ref ResourcesManager.instance.dimmedMaterial, 1.0f);
         }
 

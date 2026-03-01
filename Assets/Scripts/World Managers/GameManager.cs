@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace FG
@@ -14,11 +15,15 @@ namespace FG
         public int dungeonMaxCorridorsPerNode = 3;
         public int dungeonMaxGraphAttempts = 10;        // HOW MANY GRAPHS ALLOW TO TRY TO BUILD
         public int dungeonMaxBuildAttempts = 1000;      // HOW MANY TIMES ALLOW TO TRY TO BUILD ONE GRAPH
+        public float roomFadeInTime = 0.5f;
 
         [Header("Dungeon Debug")]
         public int currentDungeonLevelIndex;
         public Room currentRoom;
         public Room previousRoom;
+
+        // EVENT ACTIONS
+        [HideInInspector] public event Action<Room> RoomChangeEvent;
 
         // ------------
         // UNITY EVENTS
@@ -104,6 +109,7 @@ namespace FG
         {
             previousRoom = currentRoom;
             currentRoom = room;
+            RoomChangeEvent?.Invoke(currentRoom);
         }
 
         // ----------

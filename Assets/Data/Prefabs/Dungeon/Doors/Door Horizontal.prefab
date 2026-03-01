@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6102660867182831239}
   - component: {fileID: 5583840689475644002}
+  - component: {fileID: 6473497558994787862}
   m_Layer: 12
   m_Name: Lightning Control
   m_TagString: Untagged
@@ -78,6 +79,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 11, y: 5.5}
   m_EdgeRadius: 0
+--- !u!114 &6473497558994787862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279056883198167433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3271b136536204ca4f0b80804601a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FG.DoorLightningControl
 --- !u!1 &5435613097152933258
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.Door
   hardCollider: {fileID: 6838075542228185490}
+  fadeInTime: 0.5
   isBossRoom: 0
   isOpen: 0
   wasPreviouslyOpen: 0

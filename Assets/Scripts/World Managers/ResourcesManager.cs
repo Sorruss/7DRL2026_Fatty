@@ -26,10 +26,14 @@ namespace FG
         public RoomNodeTypeList roomNodeTypes;
 
         [Header("Material Variables")]
-        [SerializeField] private string materialOpacityString = "Alpha_Slider";
+        public string materialOpacityString = "Alpha_Slider";
 
         [Header("Materials")]
         public Material dimmedMaterial;
+        public Material defaultLitMaterial;
+
+        [Header("Shaders")]
+        public Shader variableLitShader;
 
         // ------------------------
         // MATERIAL RELATED METHODS

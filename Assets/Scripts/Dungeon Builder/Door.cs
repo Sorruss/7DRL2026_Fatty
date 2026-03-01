@@ -6,6 +6,7 @@ namespace FG
     {
         private Animator animator;
         private BoxCollider2D doorOpenTrigger;
+        private DoorLightningControl lightningControl;
 
         private int AnimatorParamOpen = Animator.StringToHash("open");
 
@@ -23,6 +24,7 @@ namespace FG
         {
             animator = GetComponent<Animator>();
             doorOpenTrigger = GetComponent<BoxCollider2D>();
+            lightningControl = GetComponentInChildren<DoorLightningControl>();
 
             EnableHardCollider(false);
         }
@@ -80,6 +82,11 @@ namespace FG
                     OpenDoor();
                 }
             }
+        }
+
+        public void LitDoor()
+        {
+            lightningControl.LitDoor();
         }
 
         // -------
