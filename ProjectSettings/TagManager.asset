@@ -25,14 +25,14 @@ TagManager:
   - MiniMap
   - Room
   - Wall
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - IgnoreAmmo
+  - PlayerAmmo
+  - Enemy
+  - EnemyAmmo
+  - Environment
+  - PlayerWeapon
+  - EnemyWeapon
   - 
   - 
   - 
