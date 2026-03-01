@@ -83,7 +83,7 @@ namespace FG
             return null;
         }
 
-        public IEnumerable<RoomNode> GetNextChildByNodeID(RoomNode parentNode)
+        public IEnumerable<RoomNode> GetNextChildByNode(RoomNode parentNode)
         {
             foreach (string childID in parentNode.roomNodeChildrenIDs)
                 yield return GetNodeByID(childID);

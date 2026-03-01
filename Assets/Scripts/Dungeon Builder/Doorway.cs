@@ -18,5 +18,19 @@ namespace FG
         [Header("Flags")]
         public bool isConnected = false;
         public bool isUnavailable = false;
+
+        public Doorway(Doorway other)
+        {
+            position = other.position;
+            orientation = other.orientation;
+            doorPrefab = other.doorPrefab;
+
+            doorwayStartCopyPosition = other.doorwayStartCopyPosition;
+            doorwayCopyTileWidth = other.doorwayCopyTileWidth;
+            doorwayCopyTileHeight = other.doorwayCopyTileHeight;
+
+            isConnected = other.isConnected;
+            isUnavailable = other.isUnavailable;
+        }
     }
 }

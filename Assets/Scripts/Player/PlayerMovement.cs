@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -67,7 +66,7 @@ public class PlayerMovement : MonoBehaviour {
         if (!canDash) {
             dashTimer -= Time.deltaTime;
             //dashSlider.value = dashTimer;
-    }
+        }
     }
 
     IEnumerator Dash() {
@@ -85,6 +84,7 @@ public class PlayerMovement : MonoBehaviour {
         canDash = true;
         //dashSlider.GetComponent<CanvasGroup>().alpha = 0;
     }
+
     void InstantiateTextPopUp(Color color, string message) {
         GameObject GO = Instantiate(healthTextPrefab, transform.position, Quaternion.identity, textParent);
         GO.GetComponent<Popuptext>().textcolour = color;
@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour {
         InstantiateTextPopUp(Color.red, amount.ToString("F0"));
         if (health <= 0) Die();
     }
+
     public void AddHelth(float amount) {
         health += amount;
         if(health > maxHealth) health = maxHealth;

@@ -5,12 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - groundTilemap
-  - decoration01Tilemap
-  - decoration02Tilemap
   - frontTilemap
   - roomTilemap
   - collisionTilemap
-  - minimapTileMap
+  - minimapTilemap
+  - decoration1Tilemap
+  - decoration2Tilemap
   layers:
   - Default
   - TransparentFX

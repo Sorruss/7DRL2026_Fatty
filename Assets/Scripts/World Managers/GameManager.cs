@@ -20,16 +20,13 @@ namespace FG
         // UNITY EVENTS
         private void Start()
         {
-            gameState = GameState.GAME_STARTED;
+            ChangeGameState(GameState.GAME_STARTED);
         }
 
         // --------------------------
         // GAME STATE RELATED METHODS
         public void ChangeGameState(GameState newValue)
         {
-            if (newValue == gameState)
-                return;
-
             gameState = newValue;
             switch (gameState)
             {
@@ -42,7 +39,7 @@ namespace FG
                 case GameState.GAME_WON: break;
                 case GameState.GAME_PAUSED: break;
                 case GameState.DUNGEON_OVERVIEW_MAP: break;
-                case GameState.GAME_RESTART: break;
+                case GameState.GAME_RESTART: LoadDungeonLevel(currentDungeonLevelIndex); break;
                 default: break;
             }
         }
