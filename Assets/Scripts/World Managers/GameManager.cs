@@ -79,10 +79,8 @@ namespace FG
             targetPosition = GetClosestSpawnPoint(targetPosition);
             player.transform.position = targetPosition;
 
-            // ADD PLAYER TO CINEMACHINE TARGET GROUP
-            CinemachineTargetGroupManager.instance.AddTarget(player.transform, 3.0f);
-
             // CONFIGURE OTHER COMPONENTS
+            CinemachineTargetGroupManager.instance.AddTarget(player.transform, 3.0f);
             PlayerInputManager.instance.player = player;
         }
 
