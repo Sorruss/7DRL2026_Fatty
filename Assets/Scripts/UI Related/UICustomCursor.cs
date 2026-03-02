@@ -12,6 +12,7 @@ namespace FG
 
         private void Update()
         {
+            // POSITION OF CURSOR
             transform.position = Mouse.current.position.ReadValue();
         }
     }

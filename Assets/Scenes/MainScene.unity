@@ -447,6 +447,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &935418337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935418338}
+  m_Layer: 0
+  m_Name: Mouse Follow Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935418338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935418337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.26339, y: 6.20818, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1076406197
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9509d6440dc64f4a87626a290534a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.CinemachineTargetGroupManager
+  mouseFollowTransform: {fileID: 935418338}
 --- !u!1 &1573183502
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,6 +783,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8962100985576300920, guid: 2f190c403159d674f99ff058b55f9192, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -934,6 +970,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1573183504}
   - {fileID: 1076406198}
+  - {fileID: 935418338}
   - {fileID: 415442728}
   - {fileID: 619394802}
   - {fileID: 232191179129106563}

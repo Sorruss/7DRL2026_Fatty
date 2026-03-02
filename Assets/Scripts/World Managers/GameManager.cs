@@ -80,7 +80,7 @@ namespace FG
             player.transform.position = targetPosition;
 
             // ADD PLAYER TO CINEMACHINE TARGET GROUP
-            CinemachineTargetGroupManager.instance.AddTarget(player.transform);
+            CinemachineTargetGroupManager.instance.AddTarget(player.transform, 3.0f);
 
             // CONFIGURE OTHER COMPONENTS
             PlayerInputManager.instance.player = player;
