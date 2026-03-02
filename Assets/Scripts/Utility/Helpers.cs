@@ -64,5 +64,12 @@ namespace FG
         {
             return Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
         }
+
+        public static float Linear2Decibels(float linear)
+        {
+            float linearScaleRange = 20.0f;
+            return Mathf.Log10(linear / linearScaleRange) * 20.0f;
+        }
+
     }
 }

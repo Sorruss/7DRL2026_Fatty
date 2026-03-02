@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a11b69b3df09645a5e6ee7d61b9571, type: 3}
+  m_Name: SoundFX_DoorOpen
+  m_EditorClassIdentifier: Assembly-CSharp::FG.SoundFX
+  soundName: Door Open
+  audioClip: {fileID: 8300000, guid: 7f1653d2178fdc047a95879eb5bc482e, type: 3}
+  volume: 1
+  prefab: {fileID: 0}
+  pitchMin: 0.8
+  pitchMax: 1.2

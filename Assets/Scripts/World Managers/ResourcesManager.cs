@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace FG
 {
@@ -34,6 +35,9 @@ namespace FG
 
         [Header("Shaders")]
         public Shader variableLitShader;
+
+        [Header("SFX Related")]
+        public AudioMixerGroup soundsMasterMixer;
 
         // ------------------------
         // MATERIAL RELATED METHODS
