@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.PoolManager
   pools:
-  - size: 30
+  - size: 40
     prefab: {fileID: 7617716753527905296, guid: 5b57d2c14f91ffb45b181cfec00ae633, type: 3}
     componentName: SoundFX

@@ -50,11 +50,16 @@ namespace FG
             if (isOpen)
                 return;
 
+            // FLAGS
             isOpen = true;
             wasPreviouslyOpen = true;
             EnableHardCollider(false);
 
+            // ANIMATION
             animator.SetBool(AnimatorParamOpen, isOpen);
+
+            // SFX
+            SoundFXManager.instance.PlaySoundFX(SoundFXManager.instance.doorOpenSoundFX);
         }
 
         private void CloseDoor()

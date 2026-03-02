@@ -44,7 +44,7 @@ namespace FG
             {
                 GameObject prefabInstantiated = Instantiate(prefab, anchorObject.transform);
                 prefabInstantiated.SetActive(false);
-                poolDict[prefabID].Enqueue(prefabInstantiated.GetComponent(Type.GetType(componentName)));
+                poolDict[prefabID].Enqueue(prefabInstantiated.GetComponent(Type.GetType($"FG.{componentName}")));
             }
         }
 

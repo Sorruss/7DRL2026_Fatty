@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FG.SoundFX
   soundName: Door Open
   audioClip: {fileID: 8300000, guid: 7f1653d2178fdc047a95879eb5bc482e, type: 3}
-  volume: 1
-  prefab: {fileID: 0}
+  volume: 0.7
+  prefab: {fileID: 7617716753527905296, guid: 5b57d2c14f91ffb45b181cfec00ae633, type: 3}
   pitchMin: 0.8
-  pitchMax: 1.2
+  pitchMax: 1

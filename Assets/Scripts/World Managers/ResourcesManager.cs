@@ -36,9 +36,6 @@ namespace FG
         [Header("Shaders")]
         public Shader variableLitShader;
 
-        [Header("SFX Related")]
-        public AudioMixerGroup soundsMasterMixer;
-
         // ------------------------
         // MATERIAL RELATED METHODS
         public void SetMaterialOpacity(ref Material material, float opacity)

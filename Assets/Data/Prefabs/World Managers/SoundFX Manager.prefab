@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bc8010758eb4b439a3a7b90cd97943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.SoundFXManager
+  soundsMasterMixer: {fileID: -4734643798044506327, guid: 2ac509b551addfb48950fbdc0d9cefb4, type: 2}
+  soundsMasterVolume: 8
+  soundsMasterVolumeParam: soundsVolume
+  doorOpenSoundFX: {fileID: 11400000, guid: ed923edac9b3ef44e93c7c76fe125eb3, type: 2}

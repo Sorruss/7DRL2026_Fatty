@@ -1,13 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace FG
 {
     public class SoundFXManager : SingletonMonoBehaviour<SoundFXManager>
     {
+        [Header("Mixer Config")]
+        [SerializeField] private AudioMixerGroup soundsMasterMixer;
+
         [Header("Volume Config")]
         [SerializeField] private float soundsMasterVolume = 8.0f;
         [SerializeField] private string soundsMasterVolumeParam = "soundsVolume";
+
+        [Header("Sound Effects")]
+        public SoundFXInfo doorOpenSoundFX;
 
         // ------------
         // UNITY EVENTS
@@ -45,12 +52,12 @@ namespace FG
             
             if (volume <= 0.0f)
             {
-                ResourcesManager.instance.soundsMasterMixer.audioMixer.SetFloat(soundsMasterVolumeParam, muteDecibels);
+                soundsMasterMixer.audioMixer.SetFloat(soundsMasterVolumeParam, muteDecibels);
                 return;
             }
 
             float volumeDecibels = Helpers.Linear2Decibels(volume);
-            ResourcesManager.instance.soundsMasterMixer.audioMixer.SetFloat(soundsMasterVolumeParam, volumeDecibels);
+            soundsMasterMixer.audioMixer.SetFloat(soundsMasterVolumeParam, volumeDecibels);
         }
     }
 }
