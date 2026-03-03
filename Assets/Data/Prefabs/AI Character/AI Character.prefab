@@ -391,9 +391,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c071b4a41f0c974894880a43b80f60c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.AICharacterLocomotionManager
-  speed: 0
+  speed: 7
   isMoving: 0
   canMove: 1
+  moveSpeed: 0
 --- !u!114 &3599852062339969498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,8 +407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3975ba91d6557c8449906d5813c74992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.CharacterStatsManager
-  maxHealth: 0
-  health: 0
+  maxHealth: 80
+  health: 80
   isDead: 0
 --- !u!60 &2494817841555713379
 PolygonCollider2D:
@@ -443,7 +444,7 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 1}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -455,13 +456,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: -0.516686, y: 0.43153167}
-      - {x: -0.5320963, y: -0.65308905}
-      - {x: -0.4321003, y: -0.83466196}
-      - {x: 0.49064302, y: -0.83809125}
-      - {x: 0.6211983, y: -0.67536414}
-      - {x: 0.5500984, y: 0.46494532}
+    - - {x: 0, y: 1.9764295}
+      - {x: -0.49267542, y: 1.4639858}
+      - {x: -0.56411034, y: 0.3793652}
+      - {x: -0.40008622, y: 0.101750195}
+      - {x: 0.48263958, y: 0.10632396}
+      - {x: 0.6292018, y: 0.34108293}
+      - {x: 0.5420949, y: 1.4413748}
   m_UseDelaunayMesh: 1
 --- !u!58 &2105980275826790768
 CircleCollider2D:

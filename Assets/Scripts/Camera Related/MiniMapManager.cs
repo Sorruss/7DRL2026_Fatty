@@ -26,9 +26,6 @@ namespace FG
 
         private IEnumerator WaitForGameManagerInit()
         {
-            while (GameManager.instance == null)
-                yield return new WaitForFixedUpdate();
-
             while (GameManager.instance.player == null)
                 yield return new WaitForFixedUpdate();
 

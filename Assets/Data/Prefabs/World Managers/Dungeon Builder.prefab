@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8393145828649155837}
   - component: {fileID: 3887644076589689326}
+  - component: {fileID: 8975990837624806770}
   m_Layer: 0
   m_Name: Dungeon Builder
   m_TagString: Untagged
@@ -44,3 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504108cf6f71c0346b3f26ba1be273f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.DungeonBuilder
+  pixelsPerUnit: 16
+  tilesSize: 16
+  dungeonBuildSuccessful: 0
+--- !u!114 &8975990837624806770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4808991872428871511}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfaa47778ab6e1c49ac6c918270ff31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FG.AStarTest

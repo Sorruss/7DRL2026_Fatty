@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace FG
@@ -28,9 +29,11 @@ namespace FG
 
         // ------------
         // UNITY EVENTS
-        private void Start()
+        protected override void Awake()
         {
-            ChangeGameState(GameState.GAME_STARTED);
+            base.Awake();
+
+            StartCoroutine(WaitAndInitialize());
         }
 
         // --------------------------
@@ -109,6 +112,17 @@ namespace FG
             previousRoom = currentRoom;
             currentRoom = room;
             RoomChangeEvent?.Invoke(currentRoom);
+        }
+
+        // ----------
+        // COROUTINES
+        private IEnumerator WaitAndInitialize()
+        {
+            while (DungeonBuilder.instance == null)
+                yield return null;
+
+            ChangeGameState(GameState.GAME_STARTED);
+            yield return null;
         }
 
         // ----------

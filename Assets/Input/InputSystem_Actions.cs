@@ -136,6 +136,33 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""57f173f3-0a72-4a78-b663-fae57a198ec5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""2dcf9870-8bdd-408a-a113-1ce94a7aa07b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b4bbe21-7b50-40de-93bd-b49e3eb53bdb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -312,6 +339,39 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""ButtonSouth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc8604ad-d8bb-4f45-b4f7-0d3b4cc5b56e"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fb0377c-db88-437a-8e5f-d67e3e5c0a73"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cea961b7-6a0c-4f43-a048-f36ff7358b97"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Three"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -926,6 +986,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_ButtonWest = m_Player.FindAction("ButtonWest", throwIfNotFound: true);
         m_Player_ButtonNorth = m_Player.FindAction("ButtonNorth", throwIfNotFound: true);
         m_Player_ButtonSouth = m_Player.FindAction("ButtonSouth", throwIfNotFound: true);
+        m_Player_One = m_Player.FindAction("One", throwIfNotFound: true);
+        m_Player_Two = m_Player.FindAction("Two", throwIfNotFound: true);
+        m_Player_Three = m_Player.FindAction("Three", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1024,6 +1087,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ButtonWest;
     private readonly InputAction m_Player_ButtonNorth;
     private readonly InputAction m_Player_ButtonSouth;
+    private readonly InputAction m_Player_One;
+    private readonly InputAction m_Player_Two;
+    private readonly InputAction m_Player_Three;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1055,6 +1121,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/ButtonSouth".
         /// </summary>
         public InputAction @ButtonSouth => m_Wrapper.m_Player_ButtonSouth;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_Player_One;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_Player_Two;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Three".
+        /// </summary>
+        public InputAction @Three => m_Wrapper.m_Player_Three;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1096,6 +1174,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ButtonSouth.started += instance.OnButtonSouth;
             @ButtonSouth.performed += instance.OnButtonSouth;
             @ButtonSouth.canceled += instance.OnButtonSouth;
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+            @Three.started += instance.OnThree;
+            @Three.performed += instance.OnThree;
+            @Three.canceled += instance.OnThree;
         }
 
         /// <summary>
@@ -1122,6 +1209,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ButtonSouth.started -= instance.OnButtonSouth;
             @ButtonSouth.performed -= instance.OnButtonSouth;
             @ButtonSouth.canceled -= instance.OnButtonSouth;
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+            @Three.started -= instance.OnThree;
+            @Three.performed -= instance.OnThree;
+            @Three.canceled -= instance.OnThree;
         }
 
         /// <summary>
@@ -1457,6 +1553,27 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnButtonSouth(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThree(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

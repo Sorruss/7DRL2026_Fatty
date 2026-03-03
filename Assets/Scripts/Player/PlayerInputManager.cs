@@ -17,10 +17,18 @@ namespace FG
         [SerializeField] private Vector2 MovementInput;
         [SerializeField] private float moveAmount;
 
+        [Header("Debug Inputs")]
+        [SerializeField] private bool is1KeyActionActive;
+        [SerializeField] private bool is2KeyActionActive;
+        [SerializeField] private bool is3KeyActionActive;
+
         // ------------
         // UNITY EVENTS
         private void Update()
         {
+            if (player == null)
+                return;
+
             HandleAllInputs();
         }
 
@@ -36,6 +44,11 @@ namespace FG
 
             // MOVEMENT INPUT
             inputSystem.Player.Move.performed += x => MovementInput = x.ReadValue<Vector2>();
+
+            // DEBUG
+            inputSystem.Player.One.performed += _ => is1KeyActionActive = true;
+            inputSystem.Player.Two.performed += _ => is2KeyActionActive = true;
+            inputSystem.Player.Three.performed += _ => is3KeyActionActive = true;
         }
 
         private void OnDisable()
@@ -51,6 +64,8 @@ namespace FG
             // MAIN
             HandleCameraInput();
             HandleMovementInput();
+            // DEBUG
+            HandleDebugInputs();
         }
 
         // -----------
@@ -71,6 +86,32 @@ namespace FG
 
             player.playerLocomotionManager.SetIsMoving(moveAmount != 0.0f);
             player.playerLocomotionManager.GroundMove(MovementInput);
+        }
+
+        // -----
+        // DEBUG
+        private void HandleDebugInputs()
+        {
+            if (is1KeyActionActive)
+            {
+                is1KeyActionActive = false;
+
+                AStarTest.instance.SetStartPosition();
+            }
+
+            if (is2KeyActionActive)
+            {
+                is2KeyActionActive = false;
+
+                AStarTest.instance.SetEndPosition();
+            }
+
+            if (is3KeyActionActive)
+            {
+                is3KeyActionActive = false;
+
+                AStarTest.instance.DisplayPath();
+            }
         }
     }
 }
