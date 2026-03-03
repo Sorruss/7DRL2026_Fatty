@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Tilemaps;
 
 namespace FG
 {
@@ -22,6 +23,10 @@ namespace FG
         // RESOURCES
         [Header("Special Prefabs")]
         public GameObject playerPrefab;
+
+        [Header("Special Tiles")]
+        public TileBase[] collisionTiles;
+        public TileBase preferrableEnemyPathTile;
 
         [Header("Resources - Room Graph Editor")]
         public RoomNodeTypeList roomNodeTypes;

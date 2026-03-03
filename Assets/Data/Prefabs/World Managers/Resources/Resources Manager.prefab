@@ -45,9 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FG.ResourcesManager
   playerPrefab: {fileID: 6285719632809405085, guid: 02f597b4c4584eb4c923975bd1ec6908, type: 3}
+  collisionTiles:
+  - {fileID: 11400000, guid: 37e2c9e0227bfbc409cd632b9bd0c81f, type: 2}
+  - {fileID: 11400000, guid: 98f177f8276c38b429705e6720c48672, type: 2}
+  preferrableEnemyPathTiles: {fileID: 11400000, guid: 3ce5fb260af53d24887b55c3d50041e2, type: 2}
   roomNodeTypes: {fileID: 11400000, guid: a1d930a439cd08f4c9d46449cea1749d, type: 2}
   materialOpacityString: Alpha_Slider
   dimmedMaterial: {fileID: 2100000, guid: fd5ae752e16da36428c7ae98c49dc19e, type: 2}
   defaultLitMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   variableLitShader: {fileID: -6465566751694194690, guid: 304a236819d488f409a1dfccdc33ea46, type: 3}
-  soundsMasterMixer: {fileID: -4734643798044506327, guid: 2ac509b551addfb48950fbdc0d9cefb4, type: 2}

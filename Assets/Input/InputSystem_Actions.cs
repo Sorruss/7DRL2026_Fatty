@@ -136,15 +136,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""R"",
-                    ""type"": ""Button"",
-                    ""id"": ""f9db5ab8-c5ef-4e53-be4e-452c6f937d7e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -343,17 +334,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""ButtonNorth"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ffc42aa7-f272-49eb-95f0-6027645790eb"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""R"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -946,7 +926,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_ButtonWest = m_Player.FindAction("ButtonWest", throwIfNotFound: true);
         m_Player_ButtonNorth = m_Player.FindAction("ButtonNorth", throwIfNotFound: true);
         m_Player_ButtonSouth = m_Player.FindAction("ButtonSouth", throwIfNotFound: true);
-        m_Player_R = m_Player.FindAction("R", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1045,7 +1024,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ButtonWest;
     private readonly InputAction m_Player_ButtonNorth;
     private readonly InputAction m_Player_ButtonSouth;
-    private readonly InputAction m_Player_R;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1077,10 +1055,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/ButtonSouth".
         /// </summary>
         public InputAction @ButtonSouth => m_Wrapper.m_Player_ButtonSouth;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/R".
-        /// </summary>
-        public InputAction @R => m_Wrapper.m_Player_R;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1122,9 +1096,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ButtonSouth.started += instance.OnButtonSouth;
             @ButtonSouth.performed += instance.OnButtonSouth;
             @ButtonSouth.canceled += instance.OnButtonSouth;
-            @R.started += instance.OnR;
-            @R.performed += instance.OnR;
-            @R.canceled += instance.OnR;
         }
 
         /// <summary>
@@ -1151,9 +1122,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ButtonSouth.started -= instance.OnButtonSouth;
             @ButtonSouth.performed -= instance.OnButtonSouth;
             @ButtonSouth.canceled -= instance.OnButtonSouth;
-            @R.started -= instance.OnR;
-            @R.performed -= instance.OnR;
-            @R.canceled -= instance.OnR;
         }
 
         /// <summary>
@@ -1489,13 +1457,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnButtonSouth(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "R" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnR(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

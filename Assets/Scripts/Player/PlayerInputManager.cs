@@ -17,9 +17,6 @@ namespace FG
         [SerializeField] private Vector2 MovementInput;
         [SerializeField] private float moveAmount;
 
-        [Header("Debug Inputs")]
-        [SerializeField] private bool isRKeyActive = false;
-
         // ------------
         // UNITY EVENTS
         private void Update()
@@ -39,9 +36,6 @@ namespace FG
 
             // MOVEMENT INPUT
             inputSystem.Player.Move.performed += x => MovementInput = x.ReadValue<Vector2>();
-
-            // DEBUG KEYS
-            inputSystem.Player.R.performed += _ => isRKeyActive = true;
         }
 
         private void OnDisable()
@@ -57,8 +51,6 @@ namespace FG
             // MAIN
             HandleCameraInput();
             HandleMovementInput();
-            // DEBUG
-            HandleRKeyInput();
         }
 
         // -----------
@@ -79,17 +71,6 @@ namespace FG
 
             player.playerLocomotionManager.SetIsMoving(moveAmount != 0.0f);
             player.playerLocomotionManager.GroundMove(MovementInput);
-        }
-
-        // ------------
-        // DEBUG INPUTS
-        private void HandleRKeyInput()
-        {
-            if (isRKeyActive)
-            {
-                isRKeyActive = false;
-                GameManager.instance.ChangeGameState(GameState.GAME_RESTART);
-            }
         }
     }
 }

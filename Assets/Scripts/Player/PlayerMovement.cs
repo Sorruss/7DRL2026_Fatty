@@ -12,27 +12,27 @@ namespace FG
         public InputActionReference dashAction;
         Transform body;
 
-        bool canDash = true;
-        bool isDashing;
-        float dashTimer;
+        //bool canDash = true;
+        //bool isDashing;
+        //float dashTimer;
         public float dashingPower;
         public float dashingTime;
         public float dashingCooldown;
-        TrailRenderer trailRenderer;
+        //TrailRenderer trailRenderer;
 
         public Slider healthSlider;
         public Slider dashSlider;
         public GameObject healthTextPrefab;
         public Transform textParent;
 
-        Rigidbody2D rb;
+        //Rigidbody2D rb;
         [Header("Screen Shake Settings")]
         public float shakeAmount;
         public float shakeTime;
 
         private void Start()
         {
-            rb = GetComponent<Rigidbody2D>();
+            //rb = GetComponent<Rigidbody2D>();
             body = GetComponentInChildren<SpriteRenderer>().transform;
             //trailRenderer = GetComponent<TrailRenderer>();
             //dashSlider.GetComponent<CanvasGroup>().alpha = 0;
@@ -72,7 +72,7 @@ namespace FG
             //healthSlider.value = health;
         }
 
-        IEnumerator Dash()
+        /*IEnumerator Dash()
         {
             //dashSlider.GetComponent<CanvasGroup>().alpha = 1;
             //dashSlider.maxValue = dashingCooldown;
@@ -87,7 +87,7 @@ namespace FG
             yield return new WaitForSeconds(dashingCooldown);
             canDash = true;
             //dashSlider.GetComponent<CanvasGroup>().alpha = 0;
-        }
+        }*/
 
         void InstantiateTextPopUp(Color color, string message)
         {

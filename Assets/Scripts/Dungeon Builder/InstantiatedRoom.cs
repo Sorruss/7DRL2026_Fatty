@@ -25,6 +25,9 @@ namespace FG
         [HideInInspector] public Tilemap collisionTilemap;
         [HideInInspector] public Tilemap minimapTilemap;
 
+        [Header("AI Pathing")]
+        [HideInInspector] public int[,] movementPenalty;
+
         // ------------
         // UNITY EVENTS
         private void Awake()
@@ -83,6 +86,7 @@ namespace FG
             this.room = room;
 
             BlockUnusedDoorways();
+            AddMovementPenalty();
             PlaceDoors();
         }
 
@@ -99,6 +103,34 @@ namespace FG
                 BlockDoorwayWithTilemap(frontTilemap, doorway);
                 BlockDoorwayWithTilemap(collisionTilemap, doorway);
                 BlockDoorwayWithTilemap(minimapTilemap, doorway);
+            }
+        }
+
+        private void AddMovementPenalty()
+        {
+            int roomX = room.templateUpperBounds.x - room.templateLowerBounds.x + 1;
+            int roomY = room.templateUpperBounds.y - room.templateLowerBounds.y + 1;
+            movementPenalty = new int[roomX, roomY];
+
+            for (int x = 0; x < roomX; ++x)
+            {
+                for (int y = 0; y < roomY; ++y)
+                {
+                    movementPenalty[x, y] = 40;
+                    TileBase tile = collisionTilemap.GetTile(
+                        new Vector3Int(x + room.templateLowerBounds.x, y + room.templateLowerBounds.y, 0));
+                    foreach (TileBase collisionTile in ResourcesManager.instance.collisionTiles)
+                    {
+                        if (collisionTile != tile)
+                            continue;
+
+                        movementPenalty[x, y] = 0;
+                        break;
+                    }
+
+                    if (tile == ResourcesManager.instance.preferrableEnemyPathTile)
+                        movementPenalty[x, y] = 1;
+                }
             }
         }
 
