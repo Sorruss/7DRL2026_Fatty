@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace FG
 {
@@ -10,6 +9,7 @@ namespace FG
 
         [Header("Ground Movement Config")]
         public float speed;
+        public AimDirection aimDirection;
 
         [Header("Flags")]
         public bool isMoving = false;
@@ -31,7 +31,9 @@ namespace FG
 
         protected virtual void Update()
         {
-            
+            // AIMING
+            HandleAimingDirection();
+            character.characterAnimatorManager.HandleAimingAnimatorParams(aimDirection);
         }
 
         // ----------------
@@ -45,6 +47,11 @@ namespace FG
         {
             isMoving = value;
             IsMovingChangeEvent?.Invoke(value);
+        }
+
+        protected virtual void HandleAimingDirection()
+        {
+
         }
 
         // -------

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace FG
 {
@@ -69,6 +70,25 @@ namespace FG
         {
             float linearScaleRange = 20.0f;
             return Mathf.Log10(linear / linearScaleRange) * 20.0f;
+        }
+
+        public static AimDirection Degrees2AimDirection(float degrees)
+        {
+            AimDirection aimDirection = AimDirection.DOWN;
+            if (degrees > 22.0f && degrees < 67.0f)
+                aimDirection = AimDirection.UP_RIGHT;
+            else if (degrees >= 67.0f && degrees < 112.0f)
+                aimDirection = AimDirection.UP;
+            else if (degrees >= 112.0f && degrees < 158.0f)
+                aimDirection = AimDirection.UP_LEFT;
+            else if (degrees <= 22.0f && degrees > -45.0f)
+                aimDirection = AimDirection.RIGHT;
+            else if (degrees <= -45.0f && degrees > -135.0f)
+                aimDirection = AimDirection.DOWN;
+            else if (degrees <= -135.0f || degrees >= 158.0f)
+                aimDirection = AimDirection.LEFT;
+
+            return aimDirection;
         }
 
     }

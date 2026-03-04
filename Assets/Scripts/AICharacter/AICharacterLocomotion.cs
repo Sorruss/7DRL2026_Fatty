@@ -37,6 +37,10 @@ namespace FG
         {
             base.Update();
 
+            if (playerReferencePosition == null)
+                return;
+
+            HandleAimingDirection();
             MoveEnemy();
         }
 
@@ -94,6 +98,7 @@ namespace FG
         /// </summary>
         private IEnumerator MoveEnemyRoutine(Stack<Vector3> movementSteps)
         {
+            SetIsMoving(true);
             while (movementSteps.Count > 0)
             {
                 Vector3 nextPosition = movementSteps.Pop();
@@ -113,6 +118,8 @@ namespace FG
 
             // End of path steps - trigger the enemy idle event
             //enemy.idleEvent.CallIdleEvent();
+            SetIsMoving(false);
+            yield return null;
         }
 
         /// <summary>
@@ -187,6 +194,13 @@ namespace FG
             }
 
             return playerCellPosition;
+        }
+
+        protected override void HandleAimingDirection()
+        {
+            Vector2 aimVector = (Vector2)(playerReferencePosition - aiCharacter.transform.position);
+            float degrees = Helpers.GetVectorAngle(aimVector);
+            aimDirection = Helpers.Degrees2AimDirection(degrees);
         }
     }
 }

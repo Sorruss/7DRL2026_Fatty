@@ -121,6 +121,9 @@ namespace FG
             while (DungeonBuilder.instance == null)
                 yield return null;
 
+            while (CinemachineTargetGroupManager.instance == null)
+                yield return null;
+
             ChangeGameState(GameState.GAME_STARTED);
             yield return null;
         }
